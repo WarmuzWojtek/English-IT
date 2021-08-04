@@ -1,0 +1,10 @@
+.subtitle {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 64px;
+  font-family: var(--mainFont);
+  text-align: center;
+  color: var(--primary);
+}
