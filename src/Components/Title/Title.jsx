@@ -1,8 +1,8 @@
 import './title.css';
 
-const Title = () => {
+const Title = ({ id }) => {
   return (
-    <h1 className='title'>English IT</h1>
+    <h1 ref={id} className='title'>English IT</h1>
   );
 }
 
