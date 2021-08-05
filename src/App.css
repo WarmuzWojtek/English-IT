@@ -5,6 +5,8 @@
   --primary: rgba(0, 0, 0, 1);
   --secondary: rgba(255, 255, 255, 1);
 
+  --maingradient: linear-gradient(40deg, #aaaaaa, #f2f2f2, #aaaaaa);
+
   --mainFont: 'Ubuntu', sans-serif;
 
   --spacing-xxs: 0.5em;
