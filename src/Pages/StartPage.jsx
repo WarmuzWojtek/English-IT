@@ -6,7 +6,13 @@ import Subtitle from '../Components/Subtitle/Subtitle.jsx'
 import Button from '../Components/Button/Button'
 import ButtonsKit from '../Components/ButtonsKit/ButtonsKit'
 
-const StartPage = () => {
+
+import { Transition } from "react-transition-group";
+import { TweenMax } from "gsap/all";
+const startState = { autoAlpha: 0, y: -50 };
+
+
+const StartPage = (props) => {
 
   const titleRef = useRef(null);
   const subtitleRef = useRef(null);
@@ -56,16 +62,36 @@ const StartPage = () => {
     setIsClicked(!isClicked);
   }
   return (
-    <MainBcg>
-      <Title id={titleRef} />
-      <Subtitle id={subtitleRef} />
-      {isClicked ? <ButtonsKit /> :
-        <Button
-          id={startBtnRef}
-          onClick={handleStartClick}
-          className='startBtn'
-          content='NOW!' />}
-    </MainBcg>
+
+    <Transition
+      unmountOnExit
+      in={props.show}
+      timeout={1000}
+      onEnter={node => TweenMax.set(node, startState)}
+      addEndListener={(node, done) => {
+        TweenMax.to(node, 0.5, {
+          autoAlpha: props.show ? 1 : 0,
+          y: props.show ? 0 : 50,
+          onComplete: done
+        });
+      }}
+    >
+
+
+
+
+      <MainBcg>
+        <Title id={titleRef} />
+        <Subtitle id={subtitleRef} />
+        {isClicked ? <ButtonsKit /> :
+          <Button
+            id={startBtnRef}
+            onClick={handleStartClick}
+            className='startBtn'
+            content='NOW!' />
+        }
+      </MainBcg>
+    </Transition>
   )
 }
 

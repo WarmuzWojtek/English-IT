@@ -1,0 +1,26 @@
+.board {
+  width: 100%;
+  max-width: 500px;
+  height: 70vh;
+  background-size: cover;
+  margin-right: var(--spacing-xxl);
+  padding: var(--spacing-sm);
+  border: 5px solid var(--secondary);
+  border-radius: 8px;
+}
+
+.taskDescription {
+  color: var(--secondary);
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.answer {
+  margin-top: var(--spacing-xxs);
+  width: 100%;
+  padding: var(--spacing-xxs);
+  font-family: 'Architects Daughter', cursive;
+  color: var(--secondary);
+  font-size: 34px;
+  background-color: transparent;
+}
