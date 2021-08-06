@@ -1,0 +1,14 @@
+.buttonsKit {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.paragraph {
+  width: 100%;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 0;
+  opacity: 0;
+}
