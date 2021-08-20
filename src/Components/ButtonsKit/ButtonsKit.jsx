@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { NavLink } from "react-router-dom";
 import { gsap } from 'gsap'
 import Button from '../Button/Button'
 import './buttonsKit.css'
@@ -48,11 +49,13 @@ const ButtonsKit = () => {
         content='Register'
         id={registerBtnRef} />
       <p ref={pRef} className='paragraph'>or</p>
-      <Button
-        onClick={handleDemoCLick}
-        className='demoBtn'
-        content='Play Demo'
-        id={demoBtnRef} />
+      <NavLink className='navlink' to="/demo">
+        <Button
+          onClick={handleDemoCLick}
+          className='demoBtn'
+          content='Play Demo'
+          id={demoBtnRef} />
+      </NavLink>
     </div>
   );
 }
