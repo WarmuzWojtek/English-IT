@@ -1,9 +1,11 @@
 import DemoBcg from '../Components/DemoBcg/DemoBcg'
 import Playground from '../Components/Playground/Playground'
+import Logo from '../Components/Logo/Logo';
 
 
 import { Transition } from "react-transition-group";
 import { TweenMax } from "gsap/all";
+
 const startState = { autoAlpha: 0, y: -50 };
 
 const DemoPlay = (props) => {
