@@ -8,16 +8,25 @@ import './playground.css'
 const Playground = () => {
 
   const [answer, setAnswer] = useState('');
-  const [questions, setQuestions] = useState();
+  const [questions, setQuestions] = useState(words);
   const [currentQ, setCurrentQ] = useState('');
-  const [comment, setComment] = useState('');
+  // const [comment, setComment] = useState('');
   const [currentIndex, setCurrentIndex] = useState();
   const [isEnglishFirst, setIsEnglishFirst] = useState(true);
   const [open, setOpen] = useState(false);
+  const [isGameStarted, setIsGameStarted] = useState(false);
+  const [btnContent, setBtnContent] = useState('confirm');
+  const [rightAnswers, setRightAnswers] = useState(0);
+  const [wrongAnswers, setWrongAnswers] = useState(0);
+
+
 
   useEffect(() => {
-    setQuestions(words);
-  }, [])
+
+    if (questions.length < 1) { endGame() }
+
+  }, [rightAnswers, wrongAnswers]);
+
 
   function handleAnswerChange(e) {
     setAnswer(e.target.value)
@@ -25,16 +34,21 @@ const Playground = () => {
   function handleStartBtn() {
     const index = Math.floor(Math.random() * questions.length);
     const currentQuestion = questions[index];
+    setIsGameStarted(true);
     setCurrentIndex(index);
     setCurrentQ(isEnglishFirst ? currentQuestion.q : currentQuestion.a);
   }
 
   function handleGoodAnswer() {
-    setComment('very good');
+    // setComment('very good');
+    setRightAnswers(rightAnswers => rightAnswers + 1);
     handleSkipBtn();
+
   }
   function handleWrongAnswer() {
-    setComment('you`re wrong');
+    // setComment('you`re wrong');
+    setWrongAnswers(wrongAnswers => wrongAnswers + 1);
+    handleSkipBtn();
   }
 
   function handleAnswerSubmit(e) {
@@ -45,23 +59,26 @@ const Playground = () => {
   }
 
 
-
-  function handleTryAgainBtn() {
+  function endGame() {
     setAnswer('');
-    setComment('');
+    alert(`Twój wynik to ${(rightAnswers / (rightAnswers + wrongAnswers) * 100).toFixed(0)} %`);
   }
+
+
 
   function handleSkipBtn() {
     const first = questions.slice(0, currentIndex);
     const second = questions.slice(currentIndex + 1, questions.length);
     const newQuestions = first.concat(second);
     setQuestions(newQuestions);
-    const index = Math.floor(Math.random() * newQuestions.length);
-    const currentQuestion = questions[index];
-    setCurrentIndex(index);
-    setCurrentQ(isEnglishFirst ? currentQuestion.q : currentQuestion.a);
-    setComment('');
-    setAnswer('');
+    if (newQuestions.length > 0) {
+      const index = Math.floor(Math.random() * newQuestions.length);
+      const currentQuestion = newQuestions[index];
+      setCurrentIndex(index);
+      setCurrentQ(isEnglishFirst ? currentQuestion.q : currentQuestion.a);
+      // setComment('');
+      setAnswer('');
+    }
   }
 
   function handleLanguageSwitch() {
@@ -75,20 +92,20 @@ const Playground = () => {
   return (
     <div className='gameContainer'>
       <div className='gameMenu'>
-        <div classname='gameMode'>
+        <div >
           <p className='modeName'>GAMEMODE :</p>
           <button className='modeBtn'>demoplay</button>
-          <button disabled='true' className='modeBtn'>percents</button>
-          <button disabled='true' className='modeBtn'>points</button>
+          <button disabled={true} className='modeBtn'>percents</button>
+          <button disabled={true} className='modeBtn'>points</button>
         </div>
         <p className='modeName'>Rules :</p>
         <p className='modeDescription'>Here are some words to translate. Choose from which language you want to translate, and hit "start" button. Enter a translated word into "your answer" field and hit enter or "confirm" button. At the end you will see your score.</p>
         <LanguageSwitch isEnglishFirst={isEnglishFirst} onClickFn={handleLanguageSwitch} />
-        <button onClick={handleLearntBtn} className='startGameBtn'>Learn</button>
+        <button disabled={isGameStarted} onClick={handleLearntBtn} className='startGameBtn'>Learn</button>
         <Modal style={{ background: 'black' }} open={open} onClose={() => setOpen(false)}>
           <h2 style={{ textAlign: 'center' }}>Demoplay Module</h2>
           {words.map(word => (
-            <div className='modalContainer'>
+            <div key={word.a} className='modalContainer'>
               <p className='modalWord' style={{ color: 'blue' }}>{word.q}</p>
               <p className='modalWord'>:</p>
               <p className='modalWord'>{word.a}</p>
@@ -111,9 +128,9 @@ const Playground = () => {
           />
         </form>
         <div className='commentsContainer'>
-          <p className='task'>{comment}</p>
-          <button className='gameBtn' onClick={handleTryAgainBtn}>confirm</button>
-          <button className='gameBtn' onClick={handleSkipBtn}>skip</button>
+          {/* <p className='task'>{comment}</p> */}
+          <button className='gameBtn' onClick={handleAnswerSubmit}>{btnContent}</button>
+          {/* <button className='gameBtn' onClick={handleSkipBtn}>skip</button> */}
         </div>
       </div>
     </div>
