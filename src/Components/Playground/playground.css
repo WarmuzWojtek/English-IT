@@ -1,9 +1,92 @@
-.board {
+.gameContainer {
+  display: flex;
   width: 100%;
-  max-width: 500px;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.gameMenu {
+  width: 40%;
   height: 70vh;
+  padding: var(--spacing-sm);
+  border: 5px solid var(--secondary);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.7);
+
+}
+
+.gameMode {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-xs);
+}
+
+.modeName {
+  color: var(--secondary);
+  font-size: 18px;
+}
+
+.modeDescription {
+  color: var(--secondary);
+  font-size: 16px;
+}
+
+
+.modeBtn {
+  width: 28%;
+  border: 2px solid var(--secondary);
+  font-size: 20px;
+  margin: var(--spacing-xxs);
+  padding: var(--spacing-xxs);
+  border-radius: 4px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.startGameBtn {
+  width: 50%;
+  background: transparent;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  font-size: 20px;
+  margin: var(--spacing-xxs);
+  padding: var(--spacing-xxs);
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.gameBtn {
+  width: 40%;
+  background: transparent;
+  color: var(--secondary);
+  border: 2px solid var(--secondary);
+  font-size: 20px;
+  margin: var(--spacing-xxs);
+  padding: var(--spacing-xxs);
+  border-radius: 4px;
+  transition: 0.5s;
+}
+
+.startGameBtn:hover,
+.gameBtn:hover {
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.gameBoard {
+  /* display: flex;
+  flex-wrap: wrap;
+  align-items: center; */
+  width: 40%;
+  /* max-width: 500px; */
+  /* height: 70vh; */
   background-size: cover;
-  margin-right: var(--spacing-xxl);
+  /* padding: var(--spacing-sm); */
+  /* border: 5px solid var(--secondary); */
+  border-radius: 8px;
+  width: 40%;
+  height: 70vh;
   padding: var(--spacing-sm);
   border: 5px solid var(--secondary);
   border-radius: 8px;
@@ -13,6 +96,17 @@
   color: var(--secondary);
   font-size: 24px;
   text-transform: uppercase;
+  padding: var(--spacing-xxs);
+  text-align: left;
+  margin: 0;
+}
+
+.task {
+  color: var(--secondary);
+  font-size: 24px;
+  text-transform: uppercase;
+  padding: var(--spacing-xxs);
+  text-align: left;
 }
 
 .answer {
@@ -21,6 +115,11 @@
   padding: var(--spacing-xxs);
   font-family: 'Architects Daughter', cursive;
   color: var(--secondary);
-  font-size: 34px;
+  font-size: 28px;
   background-color: transparent;
+}
+
+.answer:focus {
+  border: none;
+  outline: none;
 }
