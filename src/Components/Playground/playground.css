@@ -7,7 +7,7 @@
 
 .gameMenu {
   width: 40%;
-  height: 70vh;
+  height: 75vh;
   padding: var(--spacing-sm);
   border: 5px solid var(--secondary);
   border-radius: 8px;
@@ -45,7 +45,7 @@
 }
 
 .startGameBtn {
-  width: 50%;
+  width: 40%;
   background: transparent;
   color: var(--secondary);
   border: 2px solid var(--secondary);
@@ -85,8 +85,7 @@
   /* padding: var(--spacing-sm); */
   /* border: 5px solid var(--secondary); */
   border-radius: 8px;
-  width: 40%;
-  height: 70vh;
+  height: 75vh;
   padding: var(--spacing-sm);
   border: 5px solid var(--secondary);
   border-radius: 8px;
@@ -122,4 +121,21 @@
 .answer:focus {
   border: none;
   outline: none;
+}
+
+.modalContainer {
+  background-image: var(--maingradient);
+  border: 1px solid var(--primary);
+  /* border-bottom: none; */
+  margin: 10px auto;
+  min-width: 50vw;
+  display: flex;
+  justify-content: space-evenly;
+  border-radius: 8px;
+  /* align-items:center; */
+}
+
+.modalWord {
+  width: 20%;
+  text-align: center;
 }
