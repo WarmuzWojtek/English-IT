@@ -11,20 +11,36 @@ const Playground = () => {
   const [answer, setAnswer] = useState('');
   const [questions, setQuestions] = useState(words);
   const [currentQ, setCurrentQ] = useState('');
-  // const [comment, setComment] = useState('');
+  const [comment, setComment] = useState('');
   const [currentIndex, setCurrentIndex] = useState();
   const [isEnglishFirst, setIsEnglishFirst] = useState(true);
   const [open, setOpen] = useState(false);
   const [isGameStarted, setIsGameStarted] = useState(false);
-  const [btnContent, setBtnContent] = useState('confirm');
   const [rightAnswers, setRightAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
 
   const rightAnswersRef = useRef(null);
   const wrongAnswersRef = useRef(null);
+  const commentRef = useRef(null);
+
 
 
   useEffect(() => {
+
+    gsap.fromTo(commentRef.current, {
+      opacity: 1,
+      letterSpacing: '1px',
+      transform: 'scale(1)',
+    }, {
+      opacity: 0,
+      letterSpacing: '5px',
+      transform: 'scale(2.5)',
+      // repeat: 0,
+      duration: 1,
+      yoyo: "true",
+      // delay: 0,
+      ease: 'power3',
+    });
 
     if (questions.length < 1) { endGame() }
 
@@ -71,15 +87,15 @@ const Playground = () => {
   }
 
   function handleGoodAnswer() {
-    // setComment('very good');
+    setComment('very good');
     setRightAnswers(rightAnswers => rightAnswers + 1);
-    handleSkipBtn();
+    handleNextQuestion();
 
   }
   function handleWrongAnswer() {
-    // setComment('you`re wrong');
+    setComment('you`re wrong');
     setWrongAnswers(wrongAnswers => wrongAnswers + 1);
-    handleSkipBtn();
+    handleNextQuestion();
   }
 
   function handleAnswerSubmit(e) {
@@ -93,11 +109,12 @@ const Playground = () => {
   function endGame() {
     setAnswer('');
     alert(`Twój wynik to ${(rightAnswers / (rightAnswers + wrongAnswers) * 100).toFixed(0)} %`);
+    window.location = '/';
   }
 
 
 
-  function handleSkipBtn() {
+  function handleNextQuestion() {
     const first = questions.slice(0, currentIndex);
     const second = questions.slice(currentIndex + 1, questions.length);
     const newQuestions = first.concat(second);
@@ -107,7 +124,6 @@ const Playground = () => {
       const currentQuestion = newQuestions[index];
       setCurrentIndex(index);
       setCurrentQ(isEnglishFirst ? currentQuestion.q : currentQuestion.a);
-      // setComment('');
       setAnswer('');
     }
   }
@@ -130,7 +146,7 @@ const Playground = () => {
           <button disabled={true} className='modeBtn'>points</button>
         </div>
         <p className='modeName'>Rules :</p>
-        <p className='modeDescription'>Here are some words to translate. Choose from which language you want to translate, and hit "start" button. Enter a translated word into "your answer" field and hit enter or "confirm" button. At the end you will see your score.</p>
+        <p className='modeDescription'>Here are some words to translate. Choose from which language you want to translate, and hit "start" button. Enter a translated word into "your answer" field and hit enter. At the end you will see your score.</p>
         <LanguageSwitch isEnglishFirst={isEnglishFirst} onClickFn={handleLanguageSwitch} />
         <button disabled={isGameStarted} onClick={handleLearntBtn} className='startGameBtn'>Learn</button>
         <Modal style={{ background: 'black' }} open={open} onClose={() => setOpen(false)}>
@@ -142,7 +158,6 @@ const Playground = () => {
               <p className='modalWord'>{word.a}</p>
             </div>
           ))}
-
         </Modal>
         <button onClick={handleStartBtn} className='startGameBtn'>Start</button>
       </div>
@@ -164,11 +179,7 @@ const Playground = () => {
             value={answer}
           />
         </form>
-        <div className='commentsContainer'>
-          {/* <p className='task'>{comment}</p> */}
-          <button className='gameBtn' onClick={handleAnswerSubmit}>{btnContent}</button>
-          {/* <button className='gameBtn' onClick={handleSkipBtn}>skip</button> */}
-        </div>
+        <p ref={commentRef} className='task'>{comment}</p>
       </div>
     </div>
   );

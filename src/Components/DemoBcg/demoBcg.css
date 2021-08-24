@@ -30,3 +30,15 @@
   align-items: center;
   padding: var(--spacing-sm);
 }
+
+@media (max-width: 1124px) {
+
+  .playgroundContainer {
+    width: 100%;
+    padding: var(--spacing-xxs);
+  }
+
+  .demoBcg {
+    height: 200vh;
+  }
+}
