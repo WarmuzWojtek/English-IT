@@ -54,6 +54,7 @@
   padding: var(--spacing-xxs);
   border-radius: 4px;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .gameBtn {
@@ -66,6 +67,7 @@
   padding: var(--spacing-xxs);
   border-radius: 4px;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .startGameBtn:hover,
