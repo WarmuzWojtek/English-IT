@@ -77,15 +77,12 @@
 }
 
 .gameBoard {
-  /* display: flex;
-  flex-wrap: wrap;
-  align-items: center; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
   width: 40%;
-  /* max-width: 500px; */
-  /* height: 70vh; */
   background-size: cover;
-  /* padding: var(--spacing-sm); */
-  /* border: 5px solid var(--secondary); */
   border-radius: 8px;
   height: 75vh;
   padding: var(--spacing-sm);
@@ -98,26 +95,30 @@
   font-size: 24px;
   text-transform: uppercase;
   padding: var(--spacing-xxs);
-  text-align: left;
+  text-align: center;
   margin: 0;
 }
 
 .task {
+  min-height: 15%;
   color: var(--secondary);
   font-size: 24px;
   text-transform: uppercase;
   padding: var(--spacing-xxs);
-  text-align: left;
+  text-align: center;
+  margin: 0 auto;
 }
 
 .answer {
-  margin-top: var(--spacing-xxs);
+  border: none;
   width: 100%;
   padding: var(--spacing-xxs);
   font-family: 'Architects Daughter', cursive;
   color: var(--secondary);
   font-size: 28px;
   background-color: transparent;
+  text-align: center;
+  outline: none;
 }
 
 .answer:focus {
@@ -128,13 +129,11 @@
 .modalContainer {
   background-image: var(--maingradient);
   border: 1px solid var(--primary);
-  /* border-bottom: none; */
   margin: 10px auto;
   min-width: 50vw;
   display: flex;
   justify-content: space-evenly;
   border-radius: 8px;
-  /* align-items:center; */
 }
 
 .modalWord {
@@ -151,6 +150,7 @@
 .answersCounter {
   font-size: 22px;
   color: var(--secondary);
+  margin-right: var(--spacing-xxs);
 }
 
 .answersCounter:nth-child(1) {
@@ -159,4 +159,18 @@
 
 .answersCounter:nth-child(3) {
   color: red;
+}
+
+@media (max-width: 1124px) {
+
+  .gameMenu,
+  .gameBoard {
+    width: 90%;
+    height: 90vh;
+    margin-bottom: var(--spacing-sm);
+  }
+
+  .gameContainer {
+    flex-direction: column;
+  }
 }
