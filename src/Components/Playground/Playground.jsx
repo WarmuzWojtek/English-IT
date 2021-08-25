@@ -4,6 +4,8 @@ import { Modal } from 'react-responsive-modal';
 import { words } from '../../Constants/words'
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch'
 import './playground.css'
+import board from '../../Assets/Images/board.jpg'
+
 
 
 const Playground = () => {
@@ -161,7 +163,7 @@ const Playground = () => {
         </Modal>
         <button onClick={handleStartBtn} className='startGameBtn'>Start</button>
       </div>
-      <div className='gameBoard' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/board.jpg'})` }}>
+      <div className='gameBoard' style={{ backgroundImage: `url(${board})` }}>
         <div className='counterContainer'>
           <p className='answersCounter'>Good answers :</p>
           <p ref={rightAnswersRef} className='answersCounter'>{rightAnswers}</p>

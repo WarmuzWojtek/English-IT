@@ -1,8 +1,9 @@
 import './mainBcg.css';
+import background from '../../Assets/Images/flag.jpg'
 
 const MainBcg = ({ children }) => {
   return (
-    <div className='mainBcg' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/flag.jpg'})` }}>
+    <div className='mainBcg' style={{ backgroundImage: `url(${background})` }}>
       <div className='mainContainer'>
         {children}
       </div>
