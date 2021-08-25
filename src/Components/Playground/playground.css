@@ -141,3 +141,22 @@
   width: 20%;
   text-align: center;
 }
+
+.counterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.answersCounter {
+  font-size: 22px;
+  color: var(--secondary);
+}
+
+.answersCounter:nth-child(1) {
+  color: green;
+}
+
+.answersCounter:nth-child(3) {
+  color: red;
+}

@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { gsap } from 'gsap'
 import { Modal } from 'react-responsive-modal';
 import { words } from '../../Constants/words'
 import LanguageSwitch from '../LanguageSwitch/LanguageSwitch'
@@ -19,6 +20,8 @@ const Playground = () => {
   const [rightAnswers, setRightAnswers] = useState(0);
   const [wrongAnswers, setWrongAnswers] = useState(0);
 
+  const rightAnswersRef = useRef(null);
+  const wrongAnswersRef = useRef(null);
 
 
   useEffect(() => {
@@ -26,6 +29,34 @@ const Playground = () => {
     if (questions.length < 1) { endGame() }
 
   }, [rightAnswers, wrongAnswers]);
+
+  useEffect(() => {
+
+    gsap.fromTo(rightAnswersRef.current, {
+      transform: "translateY(-40px)"
+    }, {
+      transform: "translateY(0)",
+      repeat: 0,
+      duration: 1,
+      delay: 0,
+      ease: 'bounce',
+    });
+
+  }, [rightAnswers]);
+
+  useEffect(() => {
+
+    gsap.fromTo(wrongAnswersRef.current, {
+      transform: "translateY(-40px)"
+    }, {
+      transform: "translateY(0)",
+      repeat: 0,
+      duration: 1,
+      delay: 0,
+      ease: 'bounce',
+    });
+
+  }, [wrongAnswers]);
 
 
   function handleAnswerChange(e) {
@@ -116,6 +147,12 @@ const Playground = () => {
         <button onClick={handleStartBtn} className='startGameBtn'>Start</button>
       </div>
       <div className='gameBoard' style={{ backgroundImage: `url(${process.env.PUBLIC_URL + '/images/board.jpg'})` }}>
+        <div className='counterContainer'>
+          <p className='answersCounter'>Good answers :</p>
+          <p ref={rightAnswersRef} className='answersCounter'>{rightAnswers}</p>
+          <p className='answersCounter'>Bad answers : </p>
+          <p ref={wrongAnswersRef} className='answersCounter'>{wrongAnswers}</p>
+        </div>
         <h4 className='taskDescription'>enter a translated word</h4>
         <p className='task'>{currentQ}</p>
         <form onSubmit={handleAnswerSubmit}>
